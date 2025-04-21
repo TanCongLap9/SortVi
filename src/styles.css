@@ -1,0 +1,147 @@
+textarea.form-control {
+  resize: none;
+}
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+/* .bar {
+  background-color: black;
+  width: 60px;
+  position: relative;
+} */
+.bar-text {
+  font: normal 20px system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  color: white;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.bar-text-over {
+  color: black;
+  top: -22px;
+}
+/* #graphs {
+  height: 0%;
+  display: flex;
+  flex-flow: column;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.graph {
+  display: flex;
+  height: 100%;
+  flex-flow: row;
+  align-items: flex-end;
+  position: relative;
+} */
+/* .bar-red {
+  background-color: #ef2929;
+}
+.bar-green {
+  background-color: #7bbf38;
+}
+.bar-blue {
+  background-color: #729fcf;
+}
+.bar-red.bar-green {
+  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 80%);
+}
+.bar-green.bar-blue {
+  background-image: linear-gradient(90deg, #7bbf38 20%, #729fcf 80%);
+}
+.bar-red.bar-blue {
+  background-image: linear-gradient(90deg, #ef2929 20%, #729fcf 80%);
+}
+.bar-red.bar-green.bar-blue {
+  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 50%, #729fcf 80%);
+} */
+/* .bar-red .bar-text-over {
+  background-color: #ef2929;
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+}
+.bar-green .bar-text-over {
+  background-color: #7bbf38;
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+}
+.bar-blue .bar-text-over {
+  background-color: #729fcf;
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+}
+.bar-red.bar-green .bar-text-over {
+  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 80%);
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+}
+.bar-green.bar-blue .bar-text-over {
+  background-image: linear-gradient(90deg, #7bbf38 20%, #729fcf 80%);
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+}
+.bar-red.bar-blue .bar-text-over {
+  background-image: linear-gradient(90deg, #ef2929 20%, #729fcf 80%);
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+}
+.bar-red.bar-green.bar-blue .bar-text-over {
+  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 50%, #729fcf 80%);
+  -webkit-background-clip: text; Clip the background to the text
+  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+} */
+
+#graphs {
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+}
+
+svg {
+  display: block;
+}
+
+.bar {
+  fill: black;
+}
+
+.bar-text {
+  font: normal 20px system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  text-anchor: middle;
+  fill: white;
+  user-select: none;
+}
+.bar-text-over {
+  fill: black;
+}
+.bar-red {
+  fill: #ef2929;
+}
+.bar-green {
+  fill: #7bbf38;
+}
+.bar-blue {
+  fill: #729fcf;
+}
+.bar-red.bar-green {
+  fill: url("#gradient-rg");
+}
+.bar-green.bar-blue {
+  fill: url("#gradient-gb");
+}
+.bar-red.bar-blue {
+  fill: url("#gradient-rb");
+}
+.bar-red.bar-green.bar-blue {
+  fill: url("#gradient-rgb");
+}
