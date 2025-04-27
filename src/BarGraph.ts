@@ -1,5 +1,6 @@
-import { Dispatch } from "react";
-import { StepAction, StepActionType } from "./types/step";
+import { Dispatch } from 'react';
+import { StepAction, StepActionType } from './types/step';
+import { GraphActionType } from './types/step';
 
 export default class BarGraph extends Array {
   _graph: number;
@@ -7,13 +8,13 @@ export default class BarGraph extends Array {
 
   constructor(
     graph: number,
-    dispatchSteps: Dispatch<[action: StepAction]>,
-    array: Array<number>
+    dispatchSteps: Dispatch<StepAction>,
+    array: Array<number>,
   ) {
     if (array === undefined) {
       array = [];
     } else if (!Array.isArray(array)) {
-      throw new TypeError("The provided argument is not an array");
+      throw new TypeError('The provided argument is not an array');
     }
 
     super(...array);
@@ -36,7 +37,7 @@ export default class BarGraph extends Array {
           dispatchSteps({
             type: StepActionType.PUSH,
             payload: {
-              type: "set",
+              type: GraphActionType.SET,
               graph: this._graph,
               index: Number(i),
               value: value,

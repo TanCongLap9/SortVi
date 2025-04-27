@@ -1,28 +1,30 @@
-import { OptionActionType, OptionsState } from "../types/option";
-import BarGraph from "../BarGraph";
-import shuffle from "./shuffle";
+import { OptionAction, OptionActionType, OptionsState } from '../types/option';
+import BarGraph from '../BarGraph';
+import shuffle from './shuffle';
+import { Dispatch } from 'react';
+import { StepAction } from '../types/step';
 
 export enum Generates {
-  UNIQUE = "unique",
-  EACH = "each",
-  NEARLY_SAME = "nearly_same",
-  SAME = "same",
-  RANDOM = "random",
-  EXP2 = "exp-2",
-  EXP3 = "exp-3",
-  EXP4 = "exp-4",
-  EXP5 = "exp-5",
-  EXP1_2 = "exp-1-2",
-  EXP1_3 = "exp-1-3",
-  EXP1_4 = "exp-1-4",
-  EXP1_5 = "exp-1-5",
-  PATTERN = "pattern",
-  SIN = "sin",
-  COS = "cos",
-  TAN = "tan",
-  CSC = "csc",
-  SEC = "sec",
-  COT = "cot",
+  UNIQUE = 'unique',
+  EACH = 'each',
+  NEARLY_SAME = 'nearly_same',
+  SAME = 'same',
+  RANDOM = 'random',
+  EXP2 = 'exp-2',
+  EXP3 = 'exp-3',
+  EXP4 = 'exp-4',
+  EXP5 = 'exp-5',
+  EXP1_2 = 'exp-1-2',
+  EXP1_3 = 'exp-1-3',
+  EXP1_4 = 'exp-1-4',
+  EXP1_5 = 'exp-1-5',
+  PATTERN = 'pattern',
+  SIN = 'sin',
+  COS = 'cos',
+  TAN = 'tan',
+  CSC = 'csc',
+  SEC = 'sec',
+  COT = 'cot',
 }
 
 function height(i: number, last: number, options: OptionsState) {
@@ -114,25 +116,19 @@ function height(i: number, last: number, options: OptionsState) {
   return decimal ? min + ratio * dist : Math.round(min + ratio * dist);
 }
 
-/**
- * @param {number} length
- * @param {object} options
- * @param {Generates} options.name Algorithm name
- * @param {string} options.pattern Algorithm pattern
- * @param {number} options.min Min value
- * @param {number} options.max Max value
- * @param {boolean} options.decimal Use decimal value
- */
-const generate = (options) => {
+const generate = (options: OptionsState) => {
   return Array.from({ length: options[OptionActionType.LENGTH] }, (_, i) =>
-    height(i, options[OptionActionType.LENGTH] - 1, options)
+    height(i, options[OptionActionType.LENGTH] - 1, options),
   );
 };
 
-export const toPureArrays = (barGraph: BarGraph) =>
+export const toPureArrays = (barGraph: BarGraph[]) =>
   barGraph.map((array) => array._array.slice());
 
-export const newArray = (options, dispatchSteps) => {
+export const newArray = (
+  options: OptionsState,
+  dispatchSteps: Dispatch<StepAction>,
+) => {
   const array = generate(options);
   shuffle(array, options);
   return [new BarGraph(0, dispatchSteps, array)];

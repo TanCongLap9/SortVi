@@ -1,7 +1,7 @@
 export const shufflePart = (
   array: Array<number>,
   start: number,
-  end: number
+  end: number,
 ) => {
   for (let i = start; i < end; i++) {
     let randomIndex = Math.floor(i + Math.random() * (end - i));
@@ -13,7 +13,7 @@ export const partition = (
   array: Array<number>,
   first: number,
   last: number,
-  decreasing: boolean
+  decreasing: boolean,
 ) => {
   let pivotIndex = first,
     pivot = array[pivotIndex],
@@ -37,7 +37,7 @@ export const sort = (
   array: Array<number>,
   first: number = 0,
   last: number = array.length - 1,
-  decreasing: boolean = false
+  decreasing: boolean = false,
 ) => {
   if (first >= last) return;
   const sortedElemIndex = partition(array, first, last, decreasing);
@@ -51,7 +51,7 @@ export const sort = (
 export const isSorted = (array: Array<number>, decreasing: boolean = false) => {
   return array.every(
     (_, i) =>
-      !i || (!decreasing ? array[i - 1] <= array[i] : array[i - 1] >= array[i])
+      !i || (!decreasing ? array[i - 1] <= array[i] : array[i - 1] >= array[i]),
   );
 };
 
@@ -70,7 +70,7 @@ export const swap = (array: Array<number>, a: number, b: number) => {
 export const reverse = (
   array: Array<number>,
   start: number = 0,
-  length: number = array.length - 1
+  length: number = array.length - 1,
 ) => {
   for (let i = start; i < start + (length - start + 1) / 2; i++) {
     swap(array, i, start + length - i);
