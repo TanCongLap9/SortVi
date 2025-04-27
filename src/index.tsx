@@ -1,12 +1,12 @@
-import { createRoot } from "react-dom/client";
-import { StrictMode } from "react";
-import App from "./App";
-import HomeApp from "./home/App";
-import ApiApp from "./api/App";
-import "./styles.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { createRoot } from 'react-dom/client';
+import { StrictMode } from 'react';
+import App from './components/App';
+import HomeApp from './components/home/App';
+import ApiApp from './components/api/App';
+import './styles.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-createRoot(document.querySelector("#root")!).render(
+createRoot(document.querySelector('#root')!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
@@ -15,16 +15,5 @@ createRoot(document.querySelector("#root")!).render(
         <Route path="*" element={<App />} />
       </Routes>
     </BrowserRouter>
-  </StrictMode>
+  </StrictMode>,
 );
-
-// package.json
-// "globals": "^16.0.0",
-// "typescript": "~5.7.2",
-// "typescript-eslint": "^8.26.1",
-// "eslint-plugin-react-refresh": "^0.4.19",
-// "@types/react": "^19.0.10",
-// "@types/react-dom": "^19.0.4",
-
-// eslint.config.js
-// 'react-refresh': reactRefresh,

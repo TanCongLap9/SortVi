@@ -1,7 +1,8 @@
-import { shufflePart, sort } from "./common";
-import { Shuffles } from "../types/shuffle";
+import { shufflePart, sort } from './common';
+import { Shuffles } from '../types/shuffle';
+import { OptionsState } from '../types/option';
 
-function divideSegments(array, segments) {
+function divideSegments(array: Array<number>, segments: number) {
   let newArray = [];
 
   for (let i = 0; i < segments; i++) {
@@ -15,9 +16,14 @@ function divideSegments(array, segments) {
   }
 }
 
-export default function shuffle(array, options) {
+export default function shuffle(array: Array<number>, options: OptionsState) {
   let { shuffleAlgo, segments, amount, unit } = options;
-  let indicesToRandom, valuesToRandom, sortedLength, setIndex, i, size;
+  let indicesToRandom: Array<number>,
+    valuesToRandom: Array<number>,
+    sortedLength: number,
+    setIndex: number,
+    i: number,
+    size: number;
 
   switch (shuffleAlgo) {
     case Shuffles.UNCHANGED:
@@ -77,20 +83,20 @@ export default function shuffle(array, options) {
     case Shuffles.SCRAMBLED_HEAD:
       indicesToRandom = Array(
         Math.round(
-          unit === "element"
+          unit === 'element'
             ? amount
-            : Math.floor((amount / 100) * array.length)
-        )
+            : Math.floor((amount / 100) * array.length),
+        ),
       );
 
-      valuesToRandom = Array(indicesToRandom);
+      valuesToRandom = []; // Array(indicesToRandom);
       sortedLength = array.length - indicesToRandom.length;
 
       sort(array);
 
       for (let i = 0; i < indicesToRandom.length; i++) {
         let indexToRandom = Math.floor(
-          (i / indicesToRandom.length) * array.length
+          (i / indicesToRandom.length) * array.length,
         );
 
         indicesToRandom[i] = indexToRandom;
@@ -115,20 +121,20 @@ export default function shuffle(array, options) {
     case Shuffles.SCRAMBLED_TAIL:
       indicesToRandom = Array(
         Math.round(
-          unit === "element"
+          unit === 'element'
             ? amount
-            : Math.floor((amount / 100) * array.length)
-        )
+            : Math.floor((amount / 100) * array.length),
+        ),
       );
 
-      valuesToRandom = Array(indicesToRandom);
+      valuesToRandom = []; // Array(indicesToRandom);
       sortedLength = array.length - indicesToRandom.length;
 
       sort(array);
 
       for (let i = 0; i < indicesToRandom.length; i++) {
         let indexToRandom = Math.floor(
-          (i / indicesToRandom.length) * array.length
+          (i / indicesToRandom.length) * array.length,
         );
 
         indicesToRandom[i] = indexToRandom;

@@ -1,17 +1,17 @@
 export enum StepActionType {
-  PUSH = "push",
-  GO = "go",
-  GO_OK = "go-ok",
-  CLEAR = "clear",
-  MARK = "mark",
-  NEXT = "next",
-  PREV = "prev",
-  PLAY = "play",
-  PLAY_FIRST = "play-first",
-  STOP = "stop",
-  STOP_FIRST = "stop-first",
-  STOP_LAST = "stop-last",
-  DEFAULT = "default",
+  PUSH = 'push',
+  GO = 'go',
+  GO_OK = 'go-ok',
+  CLEAR = 'clear',
+  MARK = 'mark',
+  NEXT = 'next',
+  PREV = 'prev',
+  PLAY = 'play',
+  PLAY_FIRST = 'play-first',
+  STOP = 'stop',
+  STOP_FIRST = 'stop-first',
+  STOP_LAST = 'stop-last',
+  DEFAULT = 'default',
 }
 
 export type StepAction =
@@ -38,13 +38,13 @@ export interface StepState {
 }
 
 export enum GraphActionType {
-  HIGHLIGHT = "highlight",
-  NEW = "new",
-  SET = "set",
-  SWAP = "swap",
-  CLEAR = "clear",
-  SPEED = "speed",
-  INITIAL = "initial",
+  HIGHLIGHT = 'highlight',
+  NEW = 'new',
+  SET = 'set',
+  SWAP = 'swap',
+  CLEAR = 'clear',
+  SPEED = 'speed',
+  INITIAL = 'initial',
 }
 
 export type GraphAction =

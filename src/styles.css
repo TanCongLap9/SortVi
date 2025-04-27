@@ -1,20 +1,32 @@
 textarea.form-control {
   resize: none;
 }
+:root {
+  --bs-border-radius: 4px;
+}
 html,
 body {
   margin: 0;
   height: 100%;
 }
-/* .bar {
-  background-color: black;
-  width: 60px;
-  position: relative;
-} */
+#root {
+  height: 100%;
+}
 .bar-text {
-  font: normal 20px system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font:
+    normal 20px system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    'Noto Sans',
+    'Liberation Sans',
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
   color: white;
   margin: 0;
   width: 100%;
@@ -28,95 +40,79 @@ body {
   color: black;
   top: -22px;
 }
-/* #graphs {
-  height: 0%;
-  display: flex;
-  flex-flow: column;
-  overflow-x: auto;
-  overflow-y: hidden;
+@media (min-width: 576px) {
+  .h-sm-100 {
+    height: 100% !important;
+  }
+  .h-sm-50 {
+    height: 50% !important;
+  }
 }
-.graph {
-  display: flex;
-  height: 100%;
-  flex-flow: row;
-  align-items: flex-end;
-  position: relative;
-} */
-/* .bar-red {
-  background-color: #ef2929;
+@media (min-width: 768px) {
+  .h-md-100 {
+    height: 100% !important;
+  }
+  .h-md-50 {
+    height: 50% !important;
+  }
 }
-.bar-green {
-  background-color: #7bbf38;
+@media (min-width: 992px) {
+  .h-lg-100 {
+    height: 100% !important;
+  }
+  .h-lg-50 {
+    height: 50% !important;
+  }
 }
-.bar-blue {
-  background-color: #729fcf;
+:root {
+  --sv-scrollbar-size: 12px;
 }
-.bar-red.bar-green {
-  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 80%);
+::-webkit-scrollbar {
+  width: var(--sv-scrollbar-size);
+  height: vaR(--sv-scrollbar-size);
 }
-.bar-green.bar-blue {
-  background-image: linear-gradient(90deg, #7bbf38 20%, #729fcf 80%);
+::-webkit-scrollbar-thumb {
+  background: var(--bs-dark-bg-subtle);
 }
-.bar-red.bar-blue {
-  background-image: linear-gradient(90deg, #ef2929 20%, #729fcf 80%);
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-button:hover {
+  background: var(--bs-dark-border-subtle);
 }
-.bar-red.bar-green.bar-blue {
-  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 50%, #729fcf 80%);
-} */
-/* .bar-red .bar-text-over {
-  background-color: #ef2929;
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+::-webkit-scrollbar-thumb:active,
+::-webkit-scrollbar-button:active {
+  background: var(--bs-dark);
 }
-.bar-green .bar-text-over {
-  background-color: #7bbf38;
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
+::-webkit-scrollbar-button {
+  background: var(--bs-dark-bg-subtle);
+  width: vaR(--sv-scrollbar-size);
+  height: vaR(--sv-scrollbar-size);
 }
-.bar-blue .bar-text-over {
-  background-color: #729fcf;
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
-}
-.bar-red.bar-green .bar-text-over {
-  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 80%);
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
-}
-.bar-green.bar-blue .bar-text-over {
-  background-image: linear-gradient(90deg, #7bbf38 20%, #729fcf 80%);
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
-}
-.bar-red.bar-blue .bar-text-over {
-  background-image: linear-gradient(90deg, #ef2929 20%, #729fcf 80%);
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
-}
-.bar-red.bar-green.bar-blue .bar-text-over {
-  background-image: linear-gradient(90deg, #ef2929 20%, #7bbf38 50%, #729fcf 80%);
-  -webkit-background-clip: text; Clip the background to the text
-  -webkit-text-fill-color: transparent; Make the text transparent to show the background gradient
-} */
-
 #graphs {
   height: 100%;
   display: flex;
   flex-flow: column;
 }
-
 svg {
   display: block;
 }
-
 .bar {
   fill: black;
 }
-
 .bar-text {
-  font: normal 20px system-ui, -apple-system, "Segoe UI", Roboto,
-    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font:
+    normal 20px system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    'Noto Sans',
+    'Liberation Sans',
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
   text-anchor: middle;
   fill: white;
   user-select: none;
@@ -134,14 +130,14 @@ svg {
   fill: #729fcf;
 }
 .bar-red.bar-green {
-  fill: url("#gradient-rg");
+  fill: url('#gradient-rg');
 }
 .bar-green.bar-blue {
-  fill: url("#gradient-gb");
+  fill: url('#gradient-gb');
 }
 .bar-red.bar-blue {
-  fill: url("#gradient-rb");
+  fill: url('#gradient-rb');
 }
 .bar-red.bar-green.bar-blue {
-  fill: url("#gradient-rgb");
+  fill: url('#gradient-rgb');
 }

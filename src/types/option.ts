@@ -1,25 +1,24 @@
-import { Generates } from "../shuffle/generate";
-import { Shuffles } from "../shuffle/shuffle";
+import { Generates } from '../shuffle/generate';
 
 export enum OptionActionType {
-  IS_SHOWN = "isShown",
-  OPTIONS = "options",
-  CREATION_ALGO = "creationAlgo",
-  SHUFFLE_ALGO = "shuffleAlgo",
-  PATTERN = "pattern",
-  SPEED = "speed",
-  EACH = "each",
-  UNIT = "unit",
-  AMOUNT = "amount",
-  SEGMENTS = "segments",
-  DECIMAL = "decimal",
-  MIN = "min",
-  MAX = "max",
-  CODE = "code",
-  IS_DIRTY_CODE = "isDirtyCode",
-  LENGTH = "length",
-  RESET = "reset",
-  DEFAULT = "default",
+  IS_SHOWN = 'isShown',
+  OPTIONS = 'options',
+  CREATION_ALGO = 'creationAlgo',
+  SHUFFLE_ALGO = 'shuffleAlgo',
+  PATTERN = 'pattern',
+  SPEED = 'speed',
+  EACH = 'each',
+  UNIT = 'unit',
+  AMOUNT = 'amount',
+  SEGMENTS = 'segments',
+  DECIMAL = 'decimal',
+  MIN = 'min',
+  MAX = 'max',
+  CODE = 'code',
+  IS_DIRTY_CODE = 'isDirtyCode',
+  LENGTH = 'length',
+  RESET = 'reset',
+  DEFAULT = 'default',
 }
 
 export type OptionAction =
