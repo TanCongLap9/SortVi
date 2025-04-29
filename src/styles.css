@@ -13,20 +13,9 @@ body {
   height: 100%;
 }
 .bar-text {
-  font:
-    normal 20px system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    'Noto Sans',
-    'Liberation Sans',
-    Arial,
-    sans-serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-    'Noto Color Emoji';
+  font: normal 20px system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   color: white;
   margin: 0;
   width: 100%;
@@ -65,7 +54,7 @@ body {
   }
 }
 :root {
-  --sv-scrollbar-size: 12px;
+  --sv-scrollbar-size: 10px;
 }
 ::-webkit-scrollbar {
   width: var(--sv-scrollbar-size);
@@ -99,20 +88,9 @@ svg {
   fill: black;
 }
 .bar-text {
-  font:
-    normal 20px system-ui,
-    -apple-system,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    'Noto Sans',
-    'Liberation Sans',
-    Arial,
-    sans-serif,
-    'Apple Color Emoji',
-    'Segoe UI Emoji',
-    'Segoe UI Symbol',
-    'Noto Color Emoji';
+  font: normal 20px system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', 'Noto Sans', 'Liberation Sans', Arial, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   text-anchor: middle;
   fill: white;
   user-select: none;

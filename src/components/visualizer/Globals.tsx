@@ -1,14 +1,12 @@
-import { useEffect } from 'react';
-import BarGraph from '../BarGraph';
-import { toPureArrays } from '../shuffle/generate';
-import { GraphActionType, StepActionType } from '../types/step';
-import { GlobalsProps } from '../types/props';
+import { useContext, useEffect } from 'react';
+import { BarGraph } from '../../BarGraph';
+import { toPureArrays } from '../../shuffle/generate';
+import { GraphActionType, StepActionType } from '../../types/step';
+import { AppContext } from './App';
 
-const Globals = ({
-  arrays: [arrays, setArrays],
-  steps: [, dispatchSteps],
-  post: [post],
-}: GlobalsProps) => {
+export const Globals = () => {
+  const { arrays, setArrays, dispatchSteps, post } = useContext(AppContext);
+
   useEffect(() => {
     /**
      * Resets the array to 0.
@@ -87,8 +85,8 @@ const Globals = ({
           new BarGraph(
             i + 1,
             dispatchSteps,
-            new Array(sizes[i] ?? arrays[0].length).fill(0),
-          ),
+            new Array(sizes[i] ?? arrays[0].length).fill(0)
+          )
       );
 
       const newArrays = [arrays[0], ...moreArrays];
@@ -145,7 +143,7 @@ const Globals = ({
     }
 
     function highlightA(
-      a: Array<[BarGraph, Array<number> | number, Array<string> | string]>,
+      a: Array<[BarGraph, Array<number> | number, Array<string> | string]>
     ) {
       let indices: { [k: number]: Array<number> } = {};
       let colors: { [k: number]: Array<string> } = {};
@@ -230,7 +228,7 @@ window.mo_range = function (start: number, stop: number, step: number) {
 Math.clamp = function (
   value: number,
   min: number = -Infinity,
-  max: number = Infinity,
+  max: number = Infinity
 ) {
   return Math.max(Math.min(value, max), min);
 };
@@ -239,33 +237,13 @@ Math.log = function (oldLog: Math['log'], x: number, b: number = Math.E) {
   return b === Math.E
     ? oldLog(x)
     : b === 2
-      ? Math.log2(x)
-      : b === 10
-        ? Math.log10(x)
-        : oldLog(b) / oldLog(x);
+    ? Math.log2(x)
+    : b === 10
+    ? Math.log10(x)
+    : oldLog(b) / oldLog(x);
 }.bind(this, Math.log);
 
 Math.round = function (oldRound: Math['round'], x: number, n: number = 0) {
   let a = Math.pow(10, n);
   return oldRound(x * a) / a;
 }.bind(this, Math.round);
-
-export default Globals;
-
-declare global {
-  interface Window {
-    arrays: Array<BarGraph>;
-    RED: string;
-    GREEN: string;
-    BLUE: string;
-    mo_range(start: number, stop: number, step: number): Array<number>;
-    mo_highlight(a: any, b: any, c: any): void;
-    mo_mark(): void;
-    mo_auxArrays(n: number, ...sizes: Array<number>): Array<BarGraph>;
-    mo_clearArray(...arrays: Array<BarGraph>): void;
-    mo_swap(a: BarGraph | number, b: number, c?: number): void;
-  }
-  interface Math {
-    clamp: (value: number, min: number, max: number) => number;
-  }
-}

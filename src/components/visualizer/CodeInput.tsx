@@ -1,15 +1,15 @@
-import { useEffect } from 'react';
-import { FormLabel } from 'react-bootstrap';
-import { OptionActionType } from '../types/option';
-import data from '../data.json';
-import { CodeInputProps } from '../types/props';
+import { useContext, useEffect } from 'react';
 import AceEditor from 'react-ace';
-import { useSearchParams } from 'react-router-dom';
-
 import 'ace-builds/src-noconflict/mode-javascript';
 import 'ace-builds/src-noconflict/theme-clouds';
+import { FormLabel } from 'react-bootstrap';
+import { useSearchParams } from 'react-router-dom';
+import data from '../../data.json';
+import { OptionActionType } from '../../types/option';
+import { AppContext } from './App';
 
-const CodeInput = ({ options: [options, setOptions] }: CodeInputProps) => {
+export const CodeInput = () => {
+  const { options, setOptions } = useContext(AppContext);
   const [search] = useSearchParams();
 
   useEffect(() => {
@@ -19,6 +19,7 @@ const CodeInput = ({ options: [options, setOptions] }: CodeInputProps) => {
         setOptions({
           type: OptionActionType.CODE,
           payload: sort.code.join('\n'),
+          localStorage,
         });
       }
     }
@@ -41,11 +42,10 @@ const CodeInput = ({ options: [options, setOptions] }: CodeInputProps) => {
           setOptions({
             type: OptionActionType.CODE,
             payload: value,
+            localStorage,
           })
         }
       />
     </>
   );
 };
-
-export default CodeInput;

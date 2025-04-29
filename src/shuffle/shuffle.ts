@@ -1,8 +1,8 @@
-import { shufflePart, sort } from './common';
-import { Shuffles } from '../types/shuffle';
 import { OptionsState } from '../types/option';
+import { Shuffles } from '../types/shuffle';
+import { shufflePart, sort } from './common';
 
-function divideSegments(array: Array<number>, segments: number) {
+const divideSegments = (array: Array<number>, segments: number) => {
   let newArray = [];
 
   for (let i = 0; i < segments; i++) {
@@ -14,9 +14,9 @@ function divideSegments(array: Array<number>, segments: number) {
   for (let i = 0; i < array.length; i++) {
     array[i] = newArray[i];
   }
-}
+};
 
-export default function shuffle(array: Array<number>, options: OptionsState) {
+export const shuffle = (array: Array<number>, options: OptionsState) => {
   let { shuffleAlgo, segments, amount, unit } = options;
   let indicesToRandom: Array<number>,
     valuesToRandom: Array<number>,
@@ -85,8 +85,8 @@ export default function shuffle(array: Array<number>, options: OptionsState) {
         Math.round(
           unit === 'element'
             ? amount
-            : Math.floor((amount / 100) * array.length),
-        ),
+            : Math.floor((amount / 100) * array.length)
+        )
       );
 
       valuesToRandom = []; // Array(indicesToRandom);
@@ -96,7 +96,7 @@ export default function shuffle(array: Array<number>, options: OptionsState) {
 
       for (let i = 0; i < indicesToRandom.length; i++) {
         let indexToRandom = Math.floor(
-          (i / indicesToRandom.length) * array.length,
+          (i / indicesToRandom.length) * array.length
         );
 
         indicesToRandom[i] = indexToRandom;
@@ -123,8 +123,8 @@ export default function shuffle(array: Array<number>, options: OptionsState) {
         Math.round(
           unit === 'element'
             ? amount
-            : Math.floor((amount / 100) * array.length),
-        ),
+            : Math.floor((amount / 100) * array.length)
+        )
       );
 
       valuesToRandom = []; // Array(indicesToRandom);
@@ -134,7 +134,7 @@ export default function shuffle(array: Array<number>, options: OptionsState) {
 
       for (let i = 0; i < indicesToRandom.length; i++) {
         let indexToRandom = Math.floor(
-          (i / indicesToRandom.length) * array.length,
+          (i / indicesToRandom.length) * array.length
         );
 
         indicesToRandom[i] = indexToRandom;
@@ -161,4 +161,4 @@ export default function shuffle(array: Array<number>, options: OptionsState) {
   }
 
   return array;
-}
+};

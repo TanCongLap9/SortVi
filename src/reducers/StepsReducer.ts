@@ -2,7 +2,7 @@ import { StepAction, StepActionType, StepState } from '../types/step';
 
 export const stepsReducer = (
   state: StepState,
-  action: StepAction,
+  action: StepAction
 ): StepState => {
   switch (action.type) {
     case StepActionType.PUSH:
@@ -21,27 +21,22 @@ export const stepsReducer = (
       }
 
       return state;
-    case StepActionType.PREV:
-      return { ...state, current: state.current - 1 };
     case StepActionType.PLAY:
       return { ...state, playing: true, current: state.current + 1 };
     case StepActionType.PLAY_FIRST:
       return { ...state, playing: true, current: 0 };
     case StepActionType.STOP:
       return { ...state, playing: false };
-    case StepActionType.STOP_FIRST:
-      return { ...state, playing: false, current: 0 };
-    case StepActionType.STOP_LAST:
-      return { ...state, playing: false, current: state.steps.length - 1 };
     case StepActionType.DEFAULT:
       return getDefaultSteps();
   }
 };
 
-export const getDefaultSteps = () => ({
-  steps: [],
-  current: 0,
-  playing: false,
-  from: undefined,
-  marks: [],
-});
+export const getDefaultSteps = () =>
+  ({
+    steps: [],
+    current: 0,
+    playing: false,
+    from: undefined,
+    marks: [],
+  } as StepState);

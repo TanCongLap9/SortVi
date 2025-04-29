@@ -1,17 +1,16 @@
+import { useContext } from 'react';
 import { Button, ButtonGroup } from 'react-bootstrap';
-import { newArray, toPureArrays } from '../shuffle/generate';
-import { OptionActionType } from '../types/option';
-import { GraphActionType, StepActionType } from '../types/step';
-import { ActionButtonsProps } from '../types/props';
+import { newArray, toPureArrays } from '../../shuffle/generate';
+import { OptionActionType } from '../../types/option';
+import { GraphActionType, StepActionType } from '../../types/step';
+import { AppContext } from './App';
 
 const evalGlobal = eval;
 
-const ActionButtons = ({
-  steps: [steps, dispatchSteps],
-  arrays: [arrays, setArrays],
-  options: [options, setOptions],
-  post: [post],
-}: ActionButtonsProps) => {
+export const ActionButtons = () => {
+  const { steps, dispatchSteps, arrays, setArrays, options, setOptions, post } =
+    useContext(AppContext);
+
   const create = () => {
     const arrays = newArray(options, dispatchSteps);
     setArrays(arrays);
@@ -40,11 +39,11 @@ const ActionButtons = ({
           mainFunc = match[1];
         } else {
           throw new TypeError(
-            'Missing main func (specify it at first line, starting with #!).',
+            'Missing main func (specify it at first line, starting with #!).'
           );
         }
         evalGlobal(
-          `(() => {\n${match[2]}\nmo_auxArrays(0);\n${mainFunc}(arrays[0]);\n})();`,
+          `(() => {\n${match[2]}\nmo_auxArrays(0);\n${mainFunc}(arrays[0]);\n})();`
         );
         setOptions({ type: OptionActionType.IS_DIRTY_CODE, payload: false });
         dispatchSteps({ type: StepActionType.PLAY_FIRST });
@@ -87,5 +86,3 @@ const ActionButtons = ({
     </ButtonGroup>
   );
 };
-
-export default ActionButtons;
