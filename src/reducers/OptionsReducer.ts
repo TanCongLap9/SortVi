@@ -4,7 +4,7 @@ import { Shuffles } from '../types/shuffle';
 
 export const optionsReducer = (
   state: OptionsState,
-  action: OptionAction,
+  action: OptionAction
 ): OptionsState => {
   const optionsLS = localStorage.getItem(OptionActionType.OPTIONS);
   const options: OptionsState = optionsLS ? JSON.parse(optionsLS) : {};
@@ -16,108 +16,156 @@ export const optionsReducer = (
         [OptionActionType.IS_SHOWN]: action.payload,
       };
     case OptionActionType.CREATION_ALGO:
-      setOptionsLS(options, {
-        [OptionActionType.CREATION_ALGO]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.CREATION_ALGO]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.CREATION_ALGO]: action.payload,
       };
     case OptionActionType.SHUFFLE_ALGO:
-      setOptionsLS(options, {
-        [OptionActionType.SHUFFLE_ALGO]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.SHUFFLE_ALGO]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.SHUFFLE_ALGO]: action.payload,
       };
     case OptionActionType.PATTERN:
-      setOptionsLS(options, {
-        [OptionActionType.PATTERN]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.PATTERN]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.PATTERN]: action.payload,
       };
     case OptionActionType.SPEED:
-      setOptionsLS(options, {
-        [OptionActionType.SPEED]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.SPEED]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.SPEED]: action.payload,
       };
     case OptionActionType.EACH:
-      setOptionsLS(options, {
-        [OptionActionType.EACH]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.EACH]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.EACH]: action.payload,
       };
     case OptionActionType.UNIT:
-      setOptionsLS(options, {
-        [OptionActionType.UNIT]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.UNIT]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.UNIT]: action.payload,
       };
     case OptionActionType.AMOUNT:
-      setOptionsLS(options, {
-        [OptionActionType.AMOUNT]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.AMOUNT]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.AMOUNT]: action.payload,
       };
     case OptionActionType.SEGMENTS:
-      setOptionsLS(options, {
-        [OptionActionType.SEGMENTS]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.SEGMENTS]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.SEGMENTS]: action.payload,
       };
     case OptionActionType.DECIMAL:
-      setOptionsLS(options, {
-        [OptionActionType.DECIMAL]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.DECIMAL]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.DECIMAL]: action.payload,
       };
     case OptionActionType.MIN:
-      setOptionsLS(options, {
-        [OptionActionType.MIN]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.MIN]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.MIN]: action.payload,
       };
     case OptionActionType.MAX:
-      setOptionsLS(options, {
-        [OptionActionType.MAX]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.MAX]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         [OptionActionType.MAX]: action.payload,
       };
     case OptionActionType.CODE:
-      setOptionsLS(options, {
-        [OptionActionType.CODE]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.CODE]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
@@ -135,23 +183,30 @@ export const optionsReducer = (
         return state;
       }
 
-      setOptionsLS(options, {
-        [OptionActionType.LENGTH]: action.payload,
-      });
+      setOptionsLS(
+        options,
+        {
+          [OptionActionType.LENGTH]: action.payload,
+        },
+        action.localStorage
+      );
 
       return {
         ...state,
         length: action.payload,
       };
     case OptionActionType.RESET:
-      localStorage.removeItem(OptionActionType.OPTIONS);
-      return optionsReducer(state, { type: OptionActionType.DEFAULT });
+      action.localStorage.removeItem(OptionActionType.OPTIONS);
+      return optionsReducer(state, {
+        type: OptionActionType.DEFAULT,
+        localStorage: action.localStorage,
+      });
     case OptionActionType.DEFAULT:
-      return getDefaultOptions();
+      return getDefaultOptions(action.localStorage);
   }
 };
 
-export const getDefaultOptions = () => {
+export const getDefaultOptions = (localStorage: Storage) => {
   const optionsLS = localStorage.getItem(OptionActionType.OPTIONS);
   const options: OptionsState = optionsLS ? JSON.parse(optionsLS) : {};
   return {
@@ -177,8 +232,12 @@ export const getDefaultOptions = () => {
   };
 };
 
-const setOptionsLS = (options: OptionsState, obj: Partial<OptionsState>) =>
+const setOptionsLS = (
+  options: OptionsState,
+  obj: Partial<OptionsState>,
+  localStorage: Storage
+) =>
   localStorage.setItem(
     OptionActionType.OPTIONS,
-    JSON.stringify(Object.assign(options, obj)),
+    JSON.stringify(Object.assign(options, obj))
   );

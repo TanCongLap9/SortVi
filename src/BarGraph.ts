@@ -1,15 +1,14 @@
 import { Dispatch } from 'react';
-import { StepAction, StepActionType } from './types/step';
-import { GraphActionType } from './types/step';
+import { GraphActionType, StepAction, StepActionType } from './types/step';
 
-export default class BarGraph extends Array {
+export class BarGraph extends Array {
   _graph: number;
   _array: Array<number>;
 
   constructor(
     graph: number,
     dispatchSteps: Dispatch<StepAction>,
-    array: Array<number>,
+    array: Array<number>
   ) {
     if (array === undefined) {
       array = [];
@@ -32,6 +31,7 @@ export default class BarGraph extends Array {
           return this._array[i];
         },
         set(value) {
+          const oldValue = this._array[i];
           this._array[i] = value;
 
           dispatchSteps({
@@ -41,7 +41,7 @@ export default class BarGraph extends Array {
               graph: this._graph,
               index: Number(i),
               value: value,
-              oldValue: this[i],
+              oldValue,
               reversed: false,
             },
           });

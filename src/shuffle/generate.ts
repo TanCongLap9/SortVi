@@ -1,8 +1,8 @@
-import { OptionAction, OptionActionType, OptionsState } from '../types/option';
-import BarGraph from '../BarGraph';
-import shuffle from './shuffle';
 import { Dispatch } from 'react';
+import { BarGraph } from '../BarGraph';
+import { OptionActionType, OptionsState } from '../types/option';
 import { StepAction } from '../types/step';
+import { shuffle } from './shuffle';
 
 export enum Generates {
   UNIQUE = 'unique',
@@ -116,9 +116,9 @@ function height(i: number, last: number, options: OptionsState) {
   return decimal ? min + ratio * dist : Math.round(min + ratio * dist);
 }
 
-const generate = (options: OptionsState) => {
+export const generate = (options: OptionsState) => {
   return Array.from({ length: options[OptionActionType.LENGTH] }, (_, i) =>
-    height(i, options[OptionActionType.LENGTH] - 1, options),
+    height(i, options[OptionActionType.LENGTH] - 1, options)
   );
 };
 
@@ -127,11 +127,9 @@ export const toPureArrays = (barGraph: BarGraph[]) =>
 
 export const newArray = (
   options: OptionsState,
-  dispatchSteps: Dispatch<StepAction>,
+  dispatchSteps: Dispatch<StepAction>
 ) => {
   const array = generate(options);
   shuffle(array, options);
   return [new BarGraph(0, dispatchSteps, array)];
 };
-
-export default generate;

@@ -1,6 +1,6 @@
 import { Fragment, useEffect, useReducer } from 'react';
 import { Button, FormLabel } from 'react-bootstrap';
-import { OutputAction, PrintAction } from '../types/output';
+import { outputReducer } from '../../reducers/OutputReducer';
 
 const oldLog = console.log;
 const oldDebug = console.debug;
@@ -9,27 +9,7 @@ const oldWarn = console.warn;
 const oldError = console.error;
 const oldClear = console.clear;
 
-export const outputReducer = (
-  state: Array<PrintAction>,
-  action: OutputAction,
-): Array<PrintAction> => {
-  switch (action.type) {
-    case 'log':
-      return state.concat({ type: 'log', payload: action.payload });
-    case 'error':
-      return state.concat({ type: 'error', payload: action.payload });
-    case 'warn':
-      return state.concat({ type: 'warn', payload: action.payload });
-    case 'debug':
-      return state.concat({ type: 'debug', payload: action.payload });
-    case 'info':
-      return state.concat({ type: 'info', payload: action.payload });
-    case 'clear':
-      return [];
-  }
-};
-
-const CodeOutput = () => {
+export const CodeOutput = () => {
   const [output, dispatchOutput] = useReducer(outputReducer, []);
 
   useEffect(() => {
@@ -62,10 +42,10 @@ const CodeOutput = () => {
           .map((v) =>
             v instanceof Error
               ? `${v.name}: ${v.message}\n${v
-                .stack!.split('\n')
-                .map((line) => '   ' + line)
-                .join('\n')}`
-              : v,
+                  .stack!.split('\n')
+                  .map((line) => '   ' + line)
+                  .join('\n')}`
+              : v
           )
           .join(' '),
       });
@@ -83,9 +63,7 @@ const CodeOutput = () => {
         Output
       </FormLabel>
       <div className="position-relative h-100 border rounded overflow-hidden">
-        <div
-          id="console"
-          className="font-monospace h-100 overflow-auto">
+        <div id="console" className="font-monospace h-100 overflow-auto">
           <pre className="mb-0">
             {output.map((o, i) => (
               <Fragment key={i}>
@@ -113,5 +91,3 @@ const CodeOutput = () => {
     </>
   );
 };
-
-export default CodeOutput;

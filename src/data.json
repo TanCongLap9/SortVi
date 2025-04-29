@@ -41,7 +41,7 @@
         },
         {
           "signature": "(array: BarGraph, indices: Array<number> | number, colors: Array<Color> | Color): void",
-          "desc": "Highlights one or more bars in the main array with specific color."
+          "desc": "Highlights one or more bars in the specified array with specific color."
         },
         {
           "signature": "(params: Array<[BarGraph, Array<number> | number, Array<Color> | Color]>): void",
@@ -123,7 +123,7 @@
           "desc": "Resets the array to 0. Primarily used to simulate clean-up of auxiliary arrays."
         }
       ],
-      "examples": ["mo_auxArrays(aux1, aux2);"]
+      "examples": ["mo_clearArrays(aux1, aux2);"]
     },
     {
       "name": "Math.round",
@@ -1068,6 +1068,75 @@
         "  timSort(array, l, r);",
         "}"
       ]
+    }
+  ],
+  "algorithms": [
+    {
+      "name": "Recursive",
+      "members": [
+        { "name": "Merge Sort", "href": "/app?algo=merge" },
+        { "name": "-" },
+        {
+          "name": "Quick Sort (L/L pointers, Pivot at Start)",
+          "href": "/app?algo=quickllps"
+        },
+        {
+          "name": "Quick Sort (L/L pointers, Pivot at End)",
+          "href": "/app?algo=quickllpe"
+        },
+        {
+          "name": "Quick Sort (L/R pointers, Pivot at Start)",
+          "href": "/app?algo=quicklrps"
+        },
+        {
+          "name": "Quick Sort (L/R pointers, Pivot at End)",
+          "href": "/app?algo=quicklrpe"
+        },
+        {
+          "name": "Quick Sort (L/R pointers, Pivot at Mid)",
+          "href": "/app?algo=quicklrpm"
+        },
+        { "name": "-" },
+        { "name": "Bitonic Sort", "href": "/app?algo=bitonic" },
+        { "name": "Radix (LSD) Sort", "href": "/app?algo=lsd" },
+        { "name": "Radix (MSD) Sort", "href": "/app?algo=msd" },
+        { "name": "-" },
+        { "name": "Stooge Sort", "href": "/app?algo=stooge" }
+      ]
+    },
+    {
+      "name": "Iterative",
+      "members": [
+        { "name": "Selection Sort", "href": "/app?algo=selection" },
+        { "name": "Insertion Sort", "href": "/app?algo=insertion" },
+        { "name": "Bubble Sort", "href": "/app?algo=bubble" },
+        { "name": "Cocktail Sort", "href": "/app?algo=cocktail" },
+        { "name": "Comb Sort", "href": "/app?algo=comb" },
+        { "name": "Shell Sort", "href": "/app?algo=shell" },
+        { "name": "Gnome Sort", "href": "/app?algo=gnome" },
+        { "name": "Odd-Even Sort", "href": "/app?algo=oddeven" },
+        { "name": "Exchange Sort", "href": "/app?algo=exchange" },
+        { "name": "-" },
+        { "name": "Heap Sort", "href": "/app?algo=heap" },
+        { "name": "Cycle Sort", "href": "/app?algo=cycle" },
+        { "name": "Counting Sort", "href": "/app?algo=count" },
+        { "name": "-" },
+        { "name": "Pancake Sort", "href": "/app?algo=pancake" },
+        { "name": "I Can't Believe It Can Sort", "href": "/app?algo=believe" },
+        { "name": "Bogo Sort", "href": "/app?algo=bogo" },
+        { "name": "Bozo Sort", "href": "/app?algo=bozo" }
+      ]
+    },
+    {
+      "name": "Mixed",
+      "members": [
+        { "name": "Tim Sort", "href": "/app?algo=tim" },
+        { "name": "Intro Sort", "href": "/app?algo=intro" }
+      ]
+    },
+    {
+      "name": "Custom",
+      "members": [{ "name": "Custom", "href": "/app" }]
     }
   ]
 }

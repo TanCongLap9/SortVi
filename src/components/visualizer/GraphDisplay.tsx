@@ -1,73 +1,14 @@
 // @ts-nocheck
 
-import { useEffect, forwardRef, useImperativeHandle } from 'react';
-import { toPureArrays } from '../shuffle/generate';
-import { OptionActionType } from '../types/option';
-import { GraphAction, GraphActionType, StepActionType } from '../types/step';
-import { GraphProps } from '../types/props';
-import type JQuery from 'jquery';
-import { Post, PostSync } from '../types/post';
+import { forwardRef, useImperativeHandle } from 'react';
+import { Post, PostSync } from '../../types/post';
+import { GraphAction, GraphActionType } from '../../types/step';
 
 let myArrays: Array<Array<number>> = [];
 let bars: Array<Array<JQuery>> = [];
 let speed = 500;
 
-const Graph = ({
-  post: [post, postSync],
-  options: [options],
-  arrays: [arrays],
-  steps: [steps, dispatchSteps],
-  graphDisplay,
-}: GraphProps) => {
-  useEffect(() => {
-    post({ type: 'speed', value: options[OptionActionType.SPEED] });
-  }, [options[OptionActionType.SPEED]]);
-
-  useEffect(() => {
-    if (!graphDisplay!.current) return;
-    post({ type: 'new', arrays: toPureArrays(arrays) });
-    post({ type: 'speed', value: options[OptionActionType.SPEED] });
-  }, []);
-
-  useEffect(() => {
-    if (!steps.playing) return;
-
-    if (steps.current >= steps.steps.length) {
-      dispatchSteps({ type: StepActionType.STOP_LAST });
-      return;
-    }
-
-    post(steps.steps[steps.current]).then(() => {
-      if (steps.current < steps.steps.length) {
-        dispatchSteps({ type: StepActionType.NEXT });
-      } else {
-        dispatchSteps({ type: StepActionType.STOP_LAST });
-      }
-    });
-  }, [steps.current, steps.playing]);
-
-  useEffect(() => {
-    if (steps.from === undefined) return;
-
-    if (steps.from > steps.current) {
-      for (let i = steps.from; i >= steps.current + 1; i--) {
-        let step = steps.steps[i];
-        postSync({ ...step, reversed: true });
-      }
-    } else {
-      for (let i = steps.from + 1; i <= steps.current; i++) {
-        let step = steps.steps[i];
-        postSync(step);
-      }
-    }
-
-    dispatchSteps({ type: StepActionType.GO_OK });
-  }, [steps.from]);
-
-  return <GraphDisplay ref={graphDisplay} />;
-};
-
-const GraphDisplay = forwardRef<{
+export const GraphDisplay = forwardRef<{
   postMessage: Post;
   postMessageSync: PostSync;
 }>((_, ref) => {
@@ -131,12 +72,12 @@ const GraphDisplay = forwardRef<{
         }
       },
     }),
-    [myArrays, bars],
+    [myArrays, bars]
   );
 
   const highlight = async (
     indices: { [k: number]: Array<number> },
-    colors: { [k: number]: Array<string> },
+    colors: { [k: number]: Array<string> }
   ) => {
     let r;
     const p = new Promise((res) => (r = res));
@@ -246,7 +187,7 @@ const GraphDisplay = forwardRef<{
       .end()
       .find('text')
       .attr({ y: 20 + (h * (100 - value)) / 100 })
-      .text(value);
+      .text(Number.isInteger(value) ? value : value.toFixed(2));
 
     reloadText(bar);
   };
@@ -352,7 +293,7 @@ const GraphDisplay = forwardRef<{
         transitionProperty: 'y',
       })
       .attr({ y: 20 + (h * (100 - value)) / 100 })
-      .text(value);
+      .text(Number.isInteger(value) ? value : value.toFixed(2));
 
     reloadText(bar);
 
@@ -416,32 +357,32 @@ const GraphDisplay = forwardRef<{
 
       let div = new DOMParser().parseFromString(
         `<div class="graph"></div>`,
-        'text/xml',
+        'text/xml'
       ).firstElementChild!;
 
       let graph = new DOMParser().parseFromString(
         `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${w} ${h}" width="${w}" height="${h}">
-          <defs>
-            <linearGradient id="gradient-rg" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0" stop-color="#ef2929" />
-              <stop offset="1" stop-color="#7bbf38" />
-            </linearGradient>
-            <linearGradient id="gradient-gb" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0" stop-color="#7bbf38" />
-              <stop offset="1" stop-color="#729fcf" />
-            </linearGradient>
-            <linearGradient id="gradient-rb" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0" stop-color="#ef2929" />
-              <stop offset="1" stop-color="#729fcf" />
-            </linearGradient>
-            <linearGradient id="gradient-rgb" x1="0%" y1="50%" x2="100%" y2="50%">
-              <stop offset="0" stop-color="#ef2929" />
-              <stop offset="0.5" stop-color="#7bbf38" />
-              <stop offset="1" stop-color="#729fcf" />
-            </linearGradient>
-          </defs>
-        </svg>`,
-        'text/xml',
+            <defs>
+              <linearGradient id="gradient-rg" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0" stop-color="#ef2929" />
+                <stop offset="1" stop-color="#7bbf38" />
+              </linearGradient>
+              <linearGradient id="gradient-gb" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0" stop-color="#7bbf38" />
+                <stop offset="1" stop-color="#729fcf" />
+              </linearGradient>
+              <linearGradient id="gradient-rb" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0" stop-color="#ef2929" />
+                <stop offset="1" stop-color="#729fcf" />
+              </linearGradient>
+              <linearGradient id="gradient-rgb" x1="0%" y1="50%" x2="100%" y2="50%">
+                <stop offset="0" stop-color="#ef2929" />
+                <stop offset="0.5" stop-color="#7bbf38" />
+                <stop offset="1" stop-color="#729fcf" />
+              </linearGradient>
+            </defs>
+          </svg>`,
+        'text/xml'
       ).firstElementChild!;
 
       div.appendChild(graph);
@@ -453,13 +394,17 @@ const GraphDisplay = forwardRef<{
         // propery 'left' here for transition event for graph actions
         const bar = $(
           new DOMParser().parseFromString(
-            `<g xmlns="http://www.w3.org/2000/svg" transform="translate(${j * width
-            }, 0)" style="left: 0px;"><rect x="0" y="${100 - v
-            }%" width="${width}" height="${v}%" class="bar" /><text x="${width / 2
-            }" y="${20 + (h * (100 - v)) / 100
-            }" class="bar-text">${v}</text></g>`,
-            'text/xml',
-          ).firstElementChild! as HTMLElement,
+            `<g xmlns="http://www.w3.org/2000/svg" transform="translate(${
+              j * width
+            }, 0)" style="left: 0px;"><rect x="0" y="${
+              100 - v
+            }%" width="${width}" height="${v}%" class="bar" /><text x="${
+              width / 2
+            }" y="${20 + (h * (100 - v)) / 100}" class="bar-text">${
+              Number.isInteger(v) ? v : v.toFixed(2)
+            }</text></g>`,
+            'text/xml'
+          ).firstElementChild! as HTMLElement
         );
 
         reloadText(bar, h);
@@ -477,5 +422,3 @@ const GraphDisplay = forwardRef<{
 });
 
 GraphDisplay.displayName = 'GraphDisplay';
-
-export default Graph;
