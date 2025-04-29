@@ -5,7 +5,7 @@ You can have a look at some example algorithms or you can make your own one. To 
 
 ## Preview
 
-Have a look at https://k4m432.csb.app/home
+Have a look at https://k4m432.csb.app
 
 ## Design
 
