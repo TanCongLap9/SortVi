@@ -8,6 +8,10 @@ We've provided some popular sorting algorithms for you to learn and explore, suc
 
 Whether you're learning, teaching, experimenting, or just feel bored of lessons at school and how it is taught, SortVi surely will make learning sorting algorithms easier to learn more than ever!
 
+## Try online
+
+Have a look at https://k4m432.csb.app
+
 ## Features
 
 SortVi offers a range of powerful and user-friendly features that set it apart from other popular array visualizers:
@@ -23,10 +27,6 @@ SortVi offers a range of powerful and user-friendly features that set it apart f
 5. Auto-save: Your algorithm code and sorting preferences are automatically saved, so you can pick up right where you left off, even after closing the web app.
 
 6. Responsive design: SortVi is fully optimized for both desktop and mobile devices, ensuring a seamless and intuitive user experience across all screen sizes.
-
-## Preview
-
-Have a look at https://k4m432.csb.app
 
 ## Design
 
