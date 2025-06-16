@@ -6,8 +6,6 @@ The interface provides an intuitive and interactive way to explain how various a
 
 We've provided some popular sorting algorithms for you to learn and explore, such as Selection Sort, Bubble Sort, Insertion Sort, Merge Sort. You can make your own one also. For that, we've provided an API documentation offering a range of functions to easily manipulate data.
 
-Whether you're learning, teaching, experimenting, or just feel bored of lessons at school and how it is taught, SortVi surely will make learning sorting algorithms easier to learn more than ever!
-
 ## Try online
 
 Have a look at https://k4m432.csb.app
